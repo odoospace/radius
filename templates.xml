@@ -1,0 +1,187 @@
+<openerp>
+    <data>
+      <record model="ir.ui.view" id="product_template_form_view">
+          <field name="name">Radius Products</field>
+          <field name="model">product.template</field>
+          <field name="priority">6</field>
+          <field name="inherit_id" ref="product.product_template_form_view"/>
+          <field name="groups_id" eval="[(6, 0, [ref('radius.group_radius') ])]"/>
+          <field name="arch" type="xml">
+              <field name="sale_ok" position="before">
+                <div class="oe_left" name="options" attrs="{'invisible': [('type', '!=', 'service')]}">
+                    <div>
+                        <field name="radius"/>
+                        <label for="radius"/>
+                    </div>
+                </div>
+              </field>
+              <xpath expr="//page[@string='Information']" position="after">
+                <page string="Radius" attrs="{'invisible': ['|', ('radius', '!=', True), ('type', '!=', 'service')]}">
+                    <group name="Rate" col='4'>
+                        <field name="download_rate"/>
+                        <field name="upload_rate"/>
+                        <field name="burst" />
+                    </group>
+                    <group name="Burst" attrs="{'invisible': [('burst', '!=', True)]}" col='4'>
+                        <field name="burst_download_limit" />
+                        <field name="burst_upload_limit" />
+                        <field name="burst_download_thershold"  />
+                        <field name="burst_upload_thershold" />
+                        <field name="burst_download_time"  />
+                        <field name="burst_upload_time" />
+                    </group>
+                </page>
+              </xpath>
+          </field>
+      </record>
+
+      <!-- BEGIN view Partner form -->
+      <record model="ir.ui.view" id="res_partner_form_view">
+          <field name="name">Partner</field>
+          <field name="model">res.partner</field>
+          <field name="priority">6</field>
+          <field name="inherit_id" ref="base.view_partner_form"/>
+          <field name="groups_id" eval="[(6, 0, [ref('radius.group_radius') ])]"/>
+          <field name="arch" type="xml">
+              <xpath expr="//page[@string='Sales &amp; Purchases']" position="after">
+                <page string="Radius">
+                  <field name="radius_account_ids" context="{'default_partner_id' : active_id}">
+                    <tree editable="botttom">
+                      <field name="partner_id" groups="base.hidden"/>
+                      <field name="username"/>
+                      <field name="password"/>
+                      <field name="contract_id" domain="[('partner_id','=', partner_id)]"/>
+                      <field name="product_id" domain="[('radius','=', True)]"/>
+                      <field name="pool_type"/>
+                      <field name="static_ip"/>
+                      <field name="ippool_id"/>
+                    </tree>
+                  </field>
+                </page>
+              </xpath>
+          </field>
+      </record>
+      <!-- BEGIN view Partner form -->
+
+
+      <!-- BEGIN view Partner tree -->
+      <record model="ir.ui.view" id="view_radius_partner_tree">
+          <field name="name">radius.res.partner.tree</field>
+          <field name="model">res.partner</field>
+          <field name="arch" type="xml">
+              <tree string="Partners">
+                  <field name="name"/>
+                  <field name="phone"/>
+                  <field name="email"/>
+              </tree>
+          </field>
+      </record>
+      <!-- END view Partner tree -->
+
+      <!-- BEGIN view NAS tree -->
+      <record model="ir.ui.view" id="view_nas_tree">
+          <field name="name">radius.nas.tree</field>
+          <field name="model">radius.nas</field>
+          <field name="arch" type="xml">
+              <tree string="NAS">
+                  <field name="name"/>
+                  <field name="nas_type"/>
+                  <field name="ip"/>
+                  <field name="secret"/>
+              </tree>
+          </field>
+      </record>
+      <!-- END view NAS tree -->
+
+      <!-- BEGIN view NAS form -->
+      <record model="ir.ui.view" id="view_nas_form">
+          <field name="name">radius.nas.form</field>
+          <field name="model">radius.nas</field>
+          <field name="groups_id" eval="[(6, 0, [ref('radius.group_radius') ])]"/>
+          <field name="arch" type="xml">
+              <form string="NAS Form">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+                          <field name="nas_type"/>
+                          <field name="ip"/>
+                          <field name="secret"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+      <!-- END view NAS form -->
+
+      <!-- BEGIN view IP Pool tree -->
+      <record model="ir.ui.view" id="view_ippool_tree">
+          <field name="name">radius.ippool.tree</field>
+          <field name="model">radius.ippool</field>
+          <field name="arch" type="xml">
+              <tree string="IP Pool">
+                  <field name="name"/>
+                  <field name="ip_range"/>
+              </tree>
+          </field>
+      </record>
+      <!-- END view IP Pool tree -->
+
+      <!-- BEGIN view IP Pool form -->
+      <record model="ir.ui.view" id="view_ippool_form">
+          <field name="name">radius.ippool.form</field>
+          <field name="model">radius.ippool</field>
+          <field name="arch" type="xml">
+              <form string="IP Pool Form">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+                          <field name="ip_range"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+      <!-- END view IP Pool form -->
+
+      <!-- BEGIN menu media (partners) action -->
+      <record model="ir.actions.act_window" id="radius_partner_list_action">
+          <field name="name">Partners</field>
+          <field name="res_model">res.partner</field>
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="view_radius_partner_tree" />
+          <field name="domain">[('contract_ids','!=', False)]</field>
+      </record>
+      <!-- END menu media (partners) action -->
+
+      <!-- BEGIN menu media (partners) action -->
+      <record model="ir.actions.act_window" id="radius_nas_list_action">
+          <field name="name">NAS</field>
+          <field name="res_model">radius.nas</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+      <!-- END menu media (partners) action -->
+
+      <!-- BEGIN menu media (partners) action -->
+      <record model="ir.actions.act_window" id="radius_ippool_list_action">
+          <field name="name">IP Pool</field>
+          <field name="res_model">radius.ippool</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+      <!-- END menu media (partners) action -->
+
+      <!-- BEGIN menus -->
+      <menuitem id="radius_main_menu" name="Radius" groups="radius.group_radius"/>
+      <menuitem id="radius_management_menu" name="Reports" parent="radius_main_menu"/>
+      <menuitem id="radius_configuration_menu" name="Configuration" parent="radius_main_menu"/>
+      <!-- END menus -->
+
+      <menuitem id="radius_partner_menu" name="Partners" parent="radius_management_menu"
+          action="radius_partner_list_action"/>
+
+      <menuitem id="radius_nas_menu" name="NAS" parent="radius_configuration_menu"
+          action="radius_nas_list_action"/>
+      <menuitem id="radius_ippool_menu" name="IP Pool" parent="radius_configuration_menu"
+          action="radius_ippool_list_action"/>
+
+    </data>
+</openerp>
