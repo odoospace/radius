@@ -120,7 +120,7 @@
           <field name="arch" type="xml">
               <tree string="IP Pool">
                   <field name="name"/>
-                  <field name="ip_range"/>
+                  <field name="pool_range"/>
               </tree>
           </field>
       </record>
@@ -135,7 +135,7 @@
                   <sheet>
                       <group>
                           <field name="name"/>
-                          <field name="ip_range"/>
+                          <field name="pool_range"/>
                       </group>
                   </sheet>
               </form>
