@@ -1,0 +1,7 @@
+<openerp>
+  <data>
+    <record model="res.groups" id="radius.group_radius">
+        <field name="name">Access to radius stuff</field>
+    </record>
+  </data>
+</openerp>

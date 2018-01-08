@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_radius_nas,access_radius_nas,model_radius_nas,,1,1,1,1
+access_radius_ippool,access_radius_ippool,model_radius_ippool,,1,1,1,1
+access_radius_account,access_radius_account,model_radius_account,,1,1,1,1
