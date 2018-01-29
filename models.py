@@ -9,7 +9,7 @@ class Partner(models.Model):
 
      radius_account_ids = fields.One2many('radius.account', 'partner_id')
      radius_product_id = fields.Many2many('product.template')
-     radius_ippool_id = fields.Many2many('radius.ippool')
+     radius_ippoolgroup_id = fields.Many2many('radius.ippoolgroup')
 
 
 class Product(models.Model):
@@ -77,12 +77,12 @@ class Account(models.Model):
     product_id = fields.Many2one('product.product')
     pool_type = fields.Selection([
         ('NAS', 'NAS'),
-        ('pool', 'Pool'),
+        ('poolgroup', 'Pool Group'),
         ('static', 'Static'),
         ('dynamic', 'Dynamic')]
     )
     static_ip = fields.Char()
-    ippool_id = fields.Many2one('radius.ippool')
+    ippoolgroup_id = fields.Many2one('radius.ippool')
 
 
 class Task(models.Model):
