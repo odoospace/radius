@@ -150,7 +150,7 @@
           <field name="arch" type="xml">
               <tree string="IP Pool Group">
                   <field name="name"/>
-                  <field name="ippol_id"/>
+                  <field name="ippool_ids"/>
                   <field name="partner_ids"/>
               </tree>
           </field>
