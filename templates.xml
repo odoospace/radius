@@ -221,7 +221,7 @@
           action="radius_nas_list_action"/>
       <menuitem id="radius_ippool_menu" name="IP Pool" parent="radius_configuration_menu"
           action="radius_ippool_list_action"/>
-      <menuitem id="radius_ippool_menu" name="IP Pool Group" parent="radius_configuration_menu"
+      <menuitem id="radius_ippoolgroup_menu" name="IP Pool Group" parent="radius_configuration_menu"
           action="radius_ippoolgroup_list_action"/>
 
     </data>
