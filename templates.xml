@@ -54,7 +54,7 @@
                       <field name="product_id" domain="[('radius','=', True)]"/>
                       <field name="pool_type"/>
                       <field name="static_ip"/>
-                      <field name="ippool_id"/>
+                      <field name="ippoolgroup_id"/>
                     </tree>
                   </field>
                 </page>
@@ -143,6 +143,37 @@
       </record>
       <!-- END view IP Pool form -->
 
+      <!-- BEGIN view IP Pool Group tree -->
+      <record model="ir.ui.view" id="view_ippool_tree">
+          <field name="name">radius.ippoolgroup.tree</field>
+          <field name="model">radius.ippoolgroup</field>
+          <field name="arch" type="xml">
+              <tree string="IP Pool Group">
+                  <field name="name"/>
+                  <field name="ippol_id"/>
+                  <field name="partner_ids"/>
+              </tree>
+          </field>
+      </record>
+      <!-- END view IP Pool Group tree -->
+
+      <!-- BEGIN view IP Pool Group form -->
+      <record model="ir.ui.view" id="view_ippool_form">
+          <field name="name">radius.ippoolgroup.form</field>
+          <field name="model">radius.ippoolgroup</field>
+          <field name="arch" type="xml">
+              <form string="IP Pool Group Form">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+                          <field name="ippool_id"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+      <!-- END view IP Pool Group form -->
+
       <!-- BEGIN menu media (partners) action -->
       <record model="ir.actions.act_window" id="radius_partner_list_action">
           <field name="name">Partners</field>
@@ -169,6 +200,14 @@
       </record>
       <!-- END menu media (partners) action -->
 
+     <!-- BEGIN menu media (partners) action -->
+      <record model="ir.actions.act_window" id="radius_ippoolgroup_list_action">
+          <field name="name">IP Pool Group</field>
+          <field name="res_model">radius.ippoolgroup</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+      <!-- END menu media (partners) action -->
+
       <!-- BEGIN menus -->
       <menuitem id="radius_main_menu" name="Radius" groups="radius.group_radius"/>
       <menuitem id="radius_management_menu" name="Reports" parent="radius_main_menu"/>
@@ -182,6 +221,8 @@
           action="radius_nas_list_action"/>
       <menuitem id="radius_ippool_menu" name="IP Pool" parent="radius_configuration_menu"
           action="radius_ippool_list_action"/>
+      <menuitem id="radius_ippool_menu" name="IP Pool Group" parent="radius_configuration_menu"
+          action="radius_ippoolgroup_list_action"/>
 
     </data>
 </openerp>

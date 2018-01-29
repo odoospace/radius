@@ -40,8 +40,17 @@ class IPPool(models.Model):
         ('regular', 'Regular'),
         ('internal', 'Internal')
      ])
-     pool_range = fields.Char('IP Range', help='Create a range (A.B.C.D-E)')
-     partner_ids = fields.Many2many('res.partner')
+     pool_range = fields.Char('IP Range', help='Create a range (A.B.C.D-E or A.B.C.D/E)')
+     ippoolgroup_id = fields.Many2one('radius.ippoolgroup')
+     #partner_ids = fields.Many2many('res.partner')
+     
+
+class IPPoolGroup(models.Model):
+    _name = 'radius.ippoolgroup'
+
+    name = fields.Char('Name')
+    partner_ids = fields.Many2many('res.partner')
+    ippool_ids = fields.One2many('radius.ippool', 'ippoolgroup_id')
 
 
 class NAS(models.Model):
@@ -118,9 +127,12 @@ class Task(models.Model):
             if account.product_id:
                 product = account.product_id
                 print 'bypass', product.name
-            else:
+            elif account.contract_id:
                 product = account.contract_id.recurring_invoice_line_ids[0].product_id
                 print 'contract', product.name
+            else:
+                # TODO: launch a warning
+                continue
 
             # check rates
             download_rate = product.download_rate and product.download_rate.lower() or '0'
