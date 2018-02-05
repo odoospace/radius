@@ -170,7 +170,6 @@
                   <sheet>
                       <group>
                           <field name="name"/>
-                          <field name="ippool_ids"/>
                       </group>
                   </sheet>
               </form>
