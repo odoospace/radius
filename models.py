@@ -42,6 +42,7 @@ class IPPool(models.Model):
      ])
      pool_range = fields.Char('IP Range', help='Create a range (A.B.C.D-E or A.B.C.D/E)')
      ippoolgroup_id = fields.Many2one('radius.ippoolgroup')
+     priority = fields.Integer('Priority')
      #partner_ids = fields.Many2many('res.partner')
      
 
