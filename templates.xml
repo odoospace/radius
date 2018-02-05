@@ -79,7 +79,7 @@
       <!-- END view Partner tree -->
 
       <!-- BEGIN view NAS tree -->
-      <record model="ir.ui.view" id="view_nas_tree">
+      <record model="ir.ui.view" id="view_radius_nas_tree">
           <field name="name">radius.nas.tree</field>
           <field name="model">radius.nas</field>
           <field name="arch" type="xml">
@@ -94,7 +94,7 @@
       <!-- END view NAS tree -->
 
       <!-- BEGIN view NAS form -->
-      <record model="ir.ui.view" id="view_nas_form">
+      <record model="ir.ui.view" id="view_radius_nas_form">
           <field name="name">radius.nas.form</field>
           <field name="model">radius.nas</field>
           <field name="groups_id" eval="[(6, 0, [ref('radius.group_radius') ])]"/>
@@ -114,7 +114,7 @@
       <!-- END view NAS form -->
 
       <!-- BEGIN view IP Pool tree -->
-      <record model="ir.ui.view" id="view_ippool_tree">
+      <record model="ir.ui.view" id="view_radius_ippool_tree">
           <field name="name">radius.ippool.tree</field>
           <field name="model">radius.ippool</field>
           <field name="arch" type="xml">
@@ -128,7 +128,7 @@
       <!-- END view IP Pool tree -->
 
       <!-- BEGIN view IP Pool form -->
-      <record model="ir.ui.view" id="view_ippool_form">
+      <record model="ir.ui.view" id="view_radius_ippool_form">
           <field name="name">radius.ippool.form</field>
           <field name="model">radius.ippool</field>
           <field name="arch" type="xml">
@@ -146,7 +146,7 @@
       <!-- END view IP Pool form -->
 
       <!-- BEGIN view IP Pool Group tree -->
-      <record model="ir.ui.view" id="view_ippool_tree">
+      <record model="ir.ui.view" id="view_radius_ippoolgroup_tree">
           <field name="name">radius.ippoolgroup.tree</field>
           <field name="model">radius.ippoolgroup</field>
           <field name="arch" type="xml">
@@ -160,7 +160,7 @@
       <!-- END view IP Pool Group tree -->
 
       <!-- BEGIN view IP Pool Group form -->
-      <record model="ir.ui.view" id="view_ippool_form">
+      <record model="ir.ui.view" id="view_radius_ippoolgroup_form">
           <field name="name">radius.ippoolgroup.form</field>
           <field name="model">radius.ippoolgroup</field>
           <field name="arch" type="xml">
