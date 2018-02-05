@@ -120,6 +120,7 @@
           <field name="arch" type="xml">
               <tree string="IP Pool">
                   <field name="name"/>
+                  <field name="ippoolgroup_id"/>
                   <field name="priority"/>
                   <field name="pool_range"/>
               </tree>
