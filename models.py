@@ -1,60 +1,33 @@
 # -*- coding: utf-8 -*-
-
 from openerp import models, fields, api
-#from pagerange import PageRange
-
-class Partner(models.Model):
-     #_name = 'product.template'
-     _inherit = 'res.partner'
-
-     radius_account_ids = fields.One2many('radius.account', 'partner_id')
-     radius_product_id = fields.Many2many('product.template')
-     radius_ippoolgroup_id = fields.Many2many('radius.ippoolgroup')
 
 
-class Product(models.Model):
-     #_name = 'product.template'
-     _inherit = 'product.template'
+class ippool(models.Model):
+    _name = 'radius.ippool'
 
-     radius = fields.Boolean('Radius')
-     download_rate = fields.Char('Download rate', help='Download rate (b,k,m,g)')
-     upload_rate = fields.Char('Upload rate', help='Upload rate (b,k,m,g)')
-     burst = fields.Boolean('Burst')
-     burst_download_limit = fields.Char('Limit download', help='Limit burst download (b,k,m,g)')
-     burst_upload_limit = fields.Char('Limit upload', help='Limit burst upload (b,k,m,g)')
-     burst_download_thershold = fields.Char('Thershold download', help='Thershold burst download (b,k,m,g)')
-     burst_upload_thershold  = fields.Char('Thershold upload', help='Thershold burst upload (b,k,m,g)')
-     burst_download_time= fields.Char('Time download', help='Time burst download (b,k,m,g)')
-     burst_upload_time = fields.Char('Time upload', help='Time burst upload (b,k,m,g)')
-     radius_partner_id = fields.Many2many('res.partner')
+    def show_ips(self):
+        pass
 
-
-class IPPool(models.Model):
-     _name = 'radius.ippool'
-
-     def show_ips(self):
-         pass
-
-     name = fields.Char('Name')
-     pool_type = fields.Selection([
-        ('regular', 'Regular'),
-        ('internal', 'Internal')
-     ])
-     pool_range = fields.Char('IP Range', help='Create a range (A.B.C.D-E or A.B.C.D/E)')
-     ippoolgroup_id = fields.Many2one('radius.ippoolgroup')
-     priority = fields.Integer('Priority')
-     #partner_ids = fields.Many2many('res.partner')
+    name = fields.Char('Name')
+    pool_type = fields.Selection([
+      ('regular', 'Regular'),
+      ('internal', 'Internal')
+    ])
+    pool_range = fields.Char('IP Range', help='Create range (A.B.C.D-E or A.B.C.D/E)')
+    ippoolgroup_id = fields.Many2one('radius.ippoolgroup')
+    priority = fields.Integer('Priority')
+    #partner_ids = fields.Many2many('res.partner')
      
 
-class IPPoolGroup(models.Model):
-    _name = 'radius.ippoolgroup'
+class ippool_group(models.Model):
+    _name = 'radius.ippool.group'
 
     name = fields.Char('Name')
     partner_ids = fields.Many2many('res.partner')
     ippool_ids = fields.One2many('radius.ippool', 'ippoolgroup_id')
 
 
-class NAS(models.Model):
+class nas(models.Model):
     _name = 'radius.nas'
 
     name = fields.Char('Name')     # shortname
@@ -67,7 +40,7 @@ class NAS(models.Model):
         ('other', 'Other')], 'NAS Type')
 
 
-class Account(models.Model):
+class account(models.Model):
     _name = 'radius.account'
 
     name = fields.Char()
@@ -86,7 +59,7 @@ class Account(models.Model):
     ippoolgroup_id = fields.Many2one('radius.ippool')
 
 
-class Task(models.Model):
+class task(models.Model):
     _name = 'radius.task'
 
     @api.model
