@@ -100,10 +100,10 @@ class task(models.Model):
         for account in accounts:
             if account.product_id:
                 product = account.product_id
-                print 'bypass', product.name
+                print ('bypass', product.name)
             elif account.contract_id:
                 product = account.contract_id.recurring_invoice_line_ids[0].product_id
-                print 'contract', product.name
+                print ('contract', product.name)
             else:
                 # TODO: launch a warning
                 continue
