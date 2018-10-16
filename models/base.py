@@ -31,4 +31,5 @@ class product(models.Model):
 class account_analytic_account(models.Model):
     _inherit= 'account.analytic.account'
 
-    ippool_ip =fields.Many2one('IPPool Group', radius.ippoolgroup')
+    ippool_ip =fields.Many2one('IPPool Group', 'radius.ippoolgroup')
+    

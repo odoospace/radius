@@ -16,16 +16,16 @@
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
     'category': 'Communication',
-    'version': '0.3',
+    'version': '11.0.3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'account'],
+    'depends': ['base', 'product', 'account', 'contract'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
-        'templates.xml',
+        'views/templates.xml',
         'cron.xml',
     ],
     # only loaded in demonstration mode
